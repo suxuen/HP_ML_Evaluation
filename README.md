@@ -64,3 +64,14 @@ Done:
 - 
 - 
 - 
+
+### Model Limitations
+From 3- Grouped CV, we see that the models used are quite reliant on learning from as many things as possible to make as accurate (low MAE) and as precise (low variance) predictions as possible. Compared to full shuffled ungrouped CV with MAE = 0.074 +/- 0.002, grouping to reduce B-site identity leakage resulted in increased MAE = 0.144 +/- 0.023. This indicates that the models used for these studies should be expected to perform measurably worse on unseen chemistries. From the chemical point of view, it makes sense as properties like band gaps are highly dependent on the elements that are involved, and the MAGPIE features used do not indicate any sort of connection between different elements. Inclusion of more generalized electronic properties could reduce this problem but more testing will be needed for any concrete conclusions. That said, the reduced leakage MAE's performance is still quite great, as GGA DFT band gap predictions have noise larger than 0.144 eV. 
+
+
+### Metric used for model performance
+MAE is used notebooks 1, 2, and 3 to evaluate model performance on regression and tree learning. This metric is overall suitable but is not totally robust and can sometimes hide important information. MAE gives error in eV in the case of the studies here, which could prove problematic as a small MAE (e.g. 0.01) could be a very large percent error for certain compounds (true Eg = 0, infinite percent error). In essence, a small MAE could be a small error for large gap semiconductors/insulators but be a very large error for small gap or metallic materials. 
+
+Additionally, the errors in these studies vary across different folds. In the LOGO investigation, I observed a distribution of errors per fold between ~0.01 to ~0.6, a 60 times difference. This strongly indicates there is a per chemistry dependent part of model performance which is not signaled by MAE.
+
+These are some of the listed limitations, but does not mean MAE is a bad metric. My observations here simply suggest that more than one metric may be needed to provide a comprehensive picture of ML in materials science.
