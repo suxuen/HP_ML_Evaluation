@@ -70,7 +70,7 @@ From 3- Grouped CV, we see that the models used are quite reliant on learning fr
 
 
 ### Metric used for model performance
-MAE is used notebooks 1, 2, and 3 to evaluate model performance on regression and tree learning. This metric is overall suitable but is not totally robust and can sometimes hide important information. MAE gives error in eV in the case of the studies here, which could prove problematic as a small MAE (e.g. 0.01) could be a very large percent error for certain compounds (true Eg = 0, infinite percent error). In essence, a small MAE could be a small error for large gap semiconductors/insulators but be a very large error for small gap or metallic materials. 
+MAE is used to evaluate model performance. This metric is overall suitable but not totally robust and can sometimes hide important information. MAE gives error in eV in the case of the studies here, which could prove problematic as a small MAE (e.g. 0.01) could be a very large percent error for certain compounds (true Eg = 0, infinite percent error). In essence, a small MAE could be a small error for large gap semiconductors/insulators but be a very large error for small gap or metallic materials. 
 
 Additionally, the errors in these studies vary across different folds. In the LOGO investigation, I observed a distribution of errors per fold between ~0.01 to ~0.6, a 60 times difference. This strongly indicates there is a per chemistry dependent part of model performance which is not signaled by MAE.
 
